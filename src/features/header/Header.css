@@ -1,0 +1,12 @@
+
+.header{
+    position: fixed;
+    width: 100%;
+    top: 0;
+    text-align: left;
+    color: white;
+    background-color: #FF5700;
+}
+.logo{
+    margin-left: 50px;
+}
