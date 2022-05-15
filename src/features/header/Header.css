@@ -1,12 +1,23 @@
-
-.header{
-    position: fixed;
-    width: 100%;
+.head{
+    
+    position: sticky;
     top: 0;
-    text-align: left;
-    color: white;
-    background-color: #FF5700;
+    background-color: white;
+    margin: auto;
+    opacity: 1;
+    z-index: 500;
+    height: 70px;
+    color: #FF5700;
+    display: inline-flex;
+    width: 100%;
+    margin: auto;
+    
+}
+.header{
+    align-self: center;
+    
 }
 .logo{
+    
     margin-left: 50px;
 }
