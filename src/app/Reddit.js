@@ -1,4 +1,19 @@
+import axios from "axios";
 export const API_ROOT = 'https://www.reddit.com/';
+
+// * getting the posts in a specific subreddit
+export const getSubredditPosts = async (subreddit) =>{
+    // const response = await fetch(`${API_ROOT}${subreddit}.json`);
+    // const json = await response.json();
+    // const subredditPosts = json.data.data.children.map((post) => post.data);
+    // return subredditPosts;
+    axios.get(`${API_ROOT}${subreddit}.json`)
+    .then((res) => {
+        console.log(res.data.data.children);
+    })
+    .catch(err => console.log(err));
+}
+
 
 // * getting the subreddits
 export const getSubreddit = async () =>{
@@ -8,14 +23,7 @@ export const getSubreddit = async () =>{
     return subredditList;
 }
 
-// * getting the posts in a specific subreddit
-export const getSubredditPosts = async (subreddit) =>{
-    const response = await fetch(`${API_ROOT}${subreddit}.json`);
-    const json = await response.json();
-    const subredditPosts = json.data.children.map((post) => post.data);
-    return subredditPosts;
 
-}
 
 // * getting the comments for a specific post
 export const getCommentsForPost = async (permalink) =>{

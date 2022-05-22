@@ -1,46 +1,60 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { getSubredditPosts } from "../../../app/Reddit";
+// import { getSubredditPosts } from "../../../app/Reddit"; 
 
-
-// TODO ~ test if it actually works
-// * gets posts for subreddit 
-// * gets posts for r/softwareengineering if subreddit not specified 
-export const getPosts = createAsyncThunk(
-    'posts/getPosts',
-    async(subreddit = 'r/softwareengineering') =>{
-        const response = await getSubredditPosts(subreddit);
-        const json = await response.json();
-        console.log(json);
-        return json;
-    }
+// * gets posts from a subreddit and if there is not subreddit defined it will get posts from 'r/softwareengineering'
+export const loadPosts = createAsyncThunk(
+    'posts/loadPosts',
+    async (subreddit) =>{
+        try{
+            const response = await fetch(`https://www.reddit.com/r/${subreddit}.json`);
+            const json = await response.json();
+        
+            return json;
+        }
+        catch(err) {
+            console.log(err);
+        }
+    } 
+    
 );
 
-//  * TODO: add reducers
+
 export const postsSlice = createSlice({
     name: 'posts',
     initialState: {
-        posts:[],
+        data:[],
         isLoading: false,
-        failed: false
+        failedToLoadPosts: false
     },
-    reducers:{
-        addPost: (state, action) =>{
-            state.posts.push(action.payload);
-        }
-    },
+    
     extraReducers:{
-        [getPosts.pending]: (state, action) =>{
+        [loadPosts.pending]: (state) =>{
             state.isLoading = true;
-            state.failed = false;
+            state.failedToLoadPosts = false;
         },
-        [getPosts.fulfilled]: (state, action) =>{
+        [loadPosts.fulfilled]: (state, action) =>{
             state.isLoading = false;
-            state.failed = false;
-            state.addPost(action);
+            state.failedToLoadPosts = false;
+            state.data = (action.payload.data !== undefined) ? action.payload.data.children.map((item) =>{
+                return {
+                    id: item.data.id,
+                    author: item.data.author,
+                    subreddit: item.data.subreddit,
+                    title: item.data.title,
+                    text: item.data.selftext,
+                    upvotes: item.data.ups,
+                    commentNumber: item.data.num_comments,
+                    thumbnail: item.data.thumbnail
+                }
+            }) : 'failed';
         },
-        [getPosts.rejected]: (state, action) =>{
+        [loadPosts.rejected]: (state) =>{
             state.isLoading = false;
-            state.failed = true;
+            state.failedToLoadPosts = true;
         }
     }
 });
+export const selectLoading = (state) => state.posts.isLoading;
+export const selectFailed = (state) => state.posts.failedToLoadPosts;
+export const selectPosts = (state) => state.posts.data;
+export default postsSlice.reducer;
