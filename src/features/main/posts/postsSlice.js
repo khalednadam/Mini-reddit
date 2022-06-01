@@ -44,7 +44,9 @@ export const postsSlice = createSlice({
                     text: item.data.selftext,
                     upvotes: item.data.ups,
                     commentNumber: item.data.num_comments,
-                    thumbnail: item.data.thumbnail
+                    thumbnail: item.data.thumbnail,
+                    image: item.data.url_overridden_by_dest,
+                    video: item.data.secure_media?.reddit_video?.fallback_url
                 }
             }) : 'failed';
         },
