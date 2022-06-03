@@ -6,16 +6,8 @@ export const Post = ({ post }) =>{
     const {id, author, title, text, upvotes, commentNumber} = post;
     let {image, video, domain, thumbnail} = post;
     let width;
-    const handleLink = text1 =>{
-        if(text1){
-            if(text1.includes("&amp")){
-                return false;
-            }else{
-                return true;
-            }
-        }
-    }
-    console.log(text.length);
+    
+    // console.log(text.length);
     const handleThumbnail = () =>{
         if(image){
             if(image.includes('i.redd.it')){
@@ -56,7 +48,7 @@ export const Post = ({ post }) =>{
                
 
                 {<div>
-                    {image ? <img src={handleThumbnail()} style={{width: width}}/>:<div></div>}    
+                    {image ? <img src={handleThumbnail()} style={{width: width}}/>:null}    
                 </div>}
 
             </div>
