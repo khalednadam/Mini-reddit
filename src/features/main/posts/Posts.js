@@ -4,17 +4,20 @@ import { unwrapResult } from '@reduxjs/toolkit';
 import { Post } from './post/Post';
 import './post/post.css';
 import { loadPosts, selectFailed, selectLoading, selectPosts } from './postsSlice';
+import { selectSelectedSubreddit } from '../subreddits/selectedSubredditSlice';
 export const Posts = () =>{
     const dispatch = useDispatch();
-
+    
+    // const subreddit = useSelector(selectSelectedSubreddit);
     const posts = useSelector(selectPosts);
     const failed = useSelector(selectFailed);
     const loading = useSelector(selectLoading);
-    
+    let subreddit = useSelector(selectSelectedSubreddit);
+    console.log(subreddit);
     useEffect(()=>{
-        dispatch(loadPosts('softwareengineering'))
+        dispatch(loadPosts(subreddit))
         .then(unwrapResult);
-        }, [dispatch]);
+        }, [dispatch, subreddit]);
     if(loading){
         return(
             <div style={{gridColumn: '6 / 8'}}>
@@ -31,8 +34,8 @@ export const Posts = () =>{
     }
     return(
         <div className='posts-list'>
-            <h2>r/memes</h2>
             <div>
+                <h2>{}</h2>
                 {(posts.length < 1) ? 'No posts' : posts.map(post =>{
                     return <Post post={post} key={post.id} />
                 })}
