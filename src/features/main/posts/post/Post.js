@@ -3,10 +3,9 @@ import './post.css';
 import { ImArrowUp, ImArrowDown, ImBubble2 } from 'react-icons/im';
 import { Link } from 'react-router-dom';
 export const Post = ({ post }) =>{
-    const {id, author, title, text, upvotes, commentNumber} = post;
+    const {id, author, title, text, upvotes, commentNumber, subreddit} = post;
     let {image, video, domain, thumbnail} = post;
     let width;
-    
     // console.log(text.length);
     const handleThumbnail = () =>{
         if(image){
@@ -22,6 +21,7 @@ export const Post = ({ post }) =>{
         }
 
     }
+
     handleThumbnail();
     return(
 
@@ -41,7 +41,7 @@ export const Post = ({ post }) =>{
                 { /* get text without links */} 
                 {/* {text.length <= 600 || handleLink(text) ? <p>{text}</p> : <div></div>} */}
 
-                {video && <video width='100%' controls autoPlay >
+                {video && <video width='100%' controls autoPlay loop playsInline>
                     <source src={video} type="video/mp4" />
                 </video>}
                 

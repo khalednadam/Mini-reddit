@@ -33,9 +33,7 @@
     width: 300px;
 }
 @media screen and (max-width: 820px){
-    .search-bar{
-        display: none;
-    }
+    
     .head{
         width: 100%;
     }
@@ -47,4 +45,7 @@
     .logo{
         align-items: center;
     }
-}
+    .logo > p{
+        display: none;     
+    }
+}  

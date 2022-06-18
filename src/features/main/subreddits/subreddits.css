@@ -15,3 +15,13 @@
         display: none;
     }
 }
+.subreddit-list-item{
+    color: black;
+}
+.subreddit-list-item > a{
+    color: rgba(0, 0, 0, 0.801);
+    text-decoration: none;
+}
+.subreddit-list-item > a:hover{
+    color: black;
+}

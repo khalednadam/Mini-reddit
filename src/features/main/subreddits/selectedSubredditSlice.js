@@ -5,11 +5,12 @@ export const selectedSubredditSlice = createSlice({
     // initialState: 'memes',
     initialState: {
         selected: 'memes',
-        subreddits: ['memes', 'softwareengineering', 'programming', 'politics', 'sports']
+        subreddits: ['memes', 'softwareengineering', 'movies', 'politics', 'sports', 'gaming', 'pics']
     },
     reducers: {
         selectASubreddit: (state, action) =>{
             state.selected = action.payload.subreddit;
+            
         },
     }
 });

@@ -3,13 +3,14 @@ import './subreddits.css';
 import { Credit } from '../credit/Credit';
 import { useSelector, useDispatch } from 'react-redux';
 import { selectSubreddits, selectASubreddit } from './selectedSubredditSlice';
+import { Link, Route, BrowserRouter as Router } from 'react-router-dom';
 export const Subreddits = () =>{
     const dispatch = useDispatch();
     const subreddits = useSelector(selectSubreddits);
     return(
         <>
             <div className='subreddits'>
-                {subreddits.map(subreddit => <p onClick={()=> dispatch(selectASubreddit({subreddit}))}>r/{subreddit}</p>)}
+                {subreddits.map(subreddit => <p className='subreddit-list-item' onClick={()=> dispatch(selectASubreddit({subreddit}))}><Link to={`r/${subreddit}`}>r/{subreddit}</Link></p>)}
                 <br />
                 <Credit />
             </div>
