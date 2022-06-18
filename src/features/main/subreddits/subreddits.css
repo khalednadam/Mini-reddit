@@ -7,6 +7,9 @@
     text-align: start;
     padding-left: 20px;
 }
+.subreddits > p{
+    cursor: pointer;
+}
 @media screen and (max-width: 820px){
     .subreddits{
         display: none;

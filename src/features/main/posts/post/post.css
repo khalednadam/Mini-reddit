@@ -10,6 +10,10 @@
     border: #898989 1px solid;    
     gap: 1rem;
 }
+/* .post:hover{
+    margin-left: 10px;
+    transition: all 200ms ease-out;
+} */
 .post-author-title{
     grid-column: 2;
     text-align: left;
@@ -121,4 +125,8 @@
 
 .post-title{
     font-family: inherit;
+}
+.post-title:hover{
+    text-decoration: underline;
+    cursor:default;
 }

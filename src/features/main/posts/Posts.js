@@ -8,16 +8,15 @@ import { selectSelectedSubreddit } from '../subreddits/selectedSubredditSlice';
 export const Posts = () =>{
     const dispatch = useDispatch();
     
-    // const subreddit = useSelector(selectSelectedSubreddit);
     const posts = useSelector(selectPosts);
     const failed = useSelector(selectFailed);
     const loading = useSelector(selectLoading);
-    let subreddit = useSelector(selectSelectedSubreddit);
-    console.log(subreddit);
+    let selectedSubreddit = useSelector(selectSelectedSubreddit);
+    console.log(selectedSubreddit);
     useEffect(()=>{
-        dispatch(loadPosts(subreddit))
+        dispatch(loadPosts(selectedSubreddit))
         .then(unwrapResult);
-        }, [dispatch, subreddit]);
+        }, [dispatch, selectedSubreddit]);
     if(loading){
         return(
             <div style={{gridColumn: '6 / 8'}}>
@@ -35,7 +34,7 @@ export const Posts = () =>{
     return(
         <div className='posts-list'>
             <div>
-                <h2>{}</h2>
+                <h2>r/{selectedSubreddit}</h2>
                 {(posts.length < 1) ? 'No posts' : posts.map(post =>{
                     return <Post post={post} key={post.id} />
                 })}

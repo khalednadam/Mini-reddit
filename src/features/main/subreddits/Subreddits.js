@@ -1,21 +1,19 @@
 import React from 'react';
 import './subreddits.css';
 import { Credit } from '../credit/Credit';
+import { useSelector, useDispatch } from 'react-redux';
+import { selectSubreddits, selectASubreddit } from './selectedSubredditSlice';
 export const Subreddits = () =>{
+    const dispatch = useDispatch();
+    const subreddits = useSelector(selectSubreddits);
     return(
         <>
             <div className='subreddits'>
-                <p>r/Softwareengineering</p>
-                <p>r/Home</p>
-                <p>r/Design</p>
-                <p>r/Tech</p>
-                <p>r/Memes</p>
-                <p>r/Politics</p>
-                <p>r/Sports</p>
+                {subreddits.map(subreddit => <p onClick={()=> dispatch(selectASubreddit({subreddit}))}>r/{subreddit}</p>)}
                 <br />
                 <Credit />
             </div>
-            
+
         </>
     );
 }

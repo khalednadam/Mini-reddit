@@ -2,13 +2,18 @@ import { createSlice } from "@reduxjs/toolkit";
 
 export const selectedSubredditSlice = createSlice({
     name: 'selectedSubreddit',
-    initialState: 'memes',
+    // initialState: 'memes',
+    initialState: {
+        selected: 'memes',
+        subreddits: ['memes', 'softwareengineering', 'programming', 'politics', 'sports']
+    },
     reducers: {
-        selectedSubreddit: (state, action) =>{
-            return state = action.payload.subreddit;
+        selectASubreddit: (state, action) =>{
+            state.selected = action.payload.subreddit;
         },
     }
 });
-export const selectSelectedSubreddit = (state) => state.selectedSubreddit;
-export const { selectedSubreddit } = selectedSubredditSlice.actions;
+export const selectSelectedSubreddit = (state) => state.selectedSubreddit.selected;
+export const selectSubreddits = (state) => state.selectedSubreddit.subreddits;
+export const { selectASubreddit } = selectedSubredditSlice.actions;
 export default selectedSubredditSlice.reducer;
