@@ -5,6 +5,7 @@ import { Post } from './post/Post';
 import './post/post.css';
 import { loadPosts, selectFailed, selectLoading, selectPosts } from './postsSlice';
 import { selectSelectedSubreddit } from '../subreddits/selectedSubredditSlice';
+import { SinglePost } from '../singlePost/SinglePost';
 export const Posts = () =>{
     const dispatch = useDispatch();
     
@@ -21,6 +22,7 @@ export const Posts = () =>{
         return(
             <div style={{gridColumn: '6 / 8'}}>
                 <h1>Loading...</h1>
+                
             </div>
         );
     }
@@ -36,6 +38,7 @@ export const Posts = () =>{
             <div>
                 <h2>r/{selectedSubreddit}</h2>
                 {(posts.length < 1) ? 'No posts' : posts.map(post =>{
+                    
                     return <Post post={post} key={post.id} />
                 })}
             </div>

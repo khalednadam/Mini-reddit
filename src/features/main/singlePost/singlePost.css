@@ -1,0 +1,27 @@
+.title-middle-page{
+    grid-column: 3/11;
+}
+.comments{
+    grid-column: 2;
+    text-align: left;
+}
+.full-post{
+    padding-bottom: 20px;
+}
+.post-text{
+    padding-right: 50px;
+}
+.subreddits{
+    display: hidden;
+}
+@media screen and (max-width: 820px){
+    .title-middle-page{
+        display: none;
+    }
+    .full-post{
+        margin: 20px auto auto auto;
+        justify-content: center;
+        width: 90%;
+        margin-bottom: 20px;
+    }
+}

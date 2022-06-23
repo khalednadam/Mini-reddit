@@ -3,20 +3,24 @@ import { Header } from './features/header/Header';
 import './App.css';
 import { Posts } from './features/main/posts/Posts'; 
 import { Subreddits } from './features/main/subreddits/Subreddits';
-import { Link, Route, BrowserRouter as Router } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
+import { SinglePost } from './features/main/singlePost/SinglePost';
 function App() {
     return (
-        <div className="App">
-            <div className = 'head'>
-                <Header />
-            </div>
-            <Router>
-                <div className='body'>
-                    <Posts />
-                    <Subreddits />
+        
+            <div className="App">
+                <div className = 'head'>
+                    <Header />
                 </div>
-            </Router>
-        </div>
+                    <div className='body'>
+                    <Routes>
+                        <Route path='/r/:Subreddit/' element={ <Posts /> } />
+                        <Route path='/r/:subreddit/comments/:id/:title' element={<SinglePost />} />
+                    </Routes>
+                        <Subreddits />
+                    </div>
+            </div>
+        
     );
 }
 

@@ -3,13 +3,18 @@ import './header.css'
 import logo from '../../imgs/reddit.png';
 import { selectASubreddit } from '../main/subreddits/selectedSubredditSlice';
 import { useDispatch } from 'react-redux';
+import { Link, useNavigate } from 'react-router-dom';
 export const Header = () =>{
+    const navigate = useNavigate();
     let subreddit;
     const dispatch = useDispatch();
     const search = async(event) =>{
         subreddit = event.target.value;
         dispatch(selectASubreddit({subreddit}));
         event.target.value = '';
+        navigate({
+            pathname: `r/${subreddit}`
+        })
     }
     return(
         <>

@@ -4,6 +4,7 @@ import { Credit } from '../credit/Credit';
 import { useSelector, useDispatch } from 'react-redux';
 import { selectSubreddits, selectASubreddit } from './selectedSubredditSlice';
 import { Link, Route, BrowserRouter as Router } from 'react-router-dom';
+import '../singlePost/singlePost.css';
 export const Subreddits = () =>{
     const dispatch = useDispatch();
     const subreddits = useSelector(selectSubreddits);

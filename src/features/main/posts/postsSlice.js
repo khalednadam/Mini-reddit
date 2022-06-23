@@ -1,5 +1,4 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-// import { getSubredditPosts } from "../../../app/Reddit"; 
 
 // * gets posts from a subreddit and if there is not subreddit defined it will get posts from 'r/softwareengineering'
 export const loadPosts = createAsyncThunk(
@@ -47,6 +46,7 @@ export const postsSlice = createSlice({
                     thumbnail: item.data.thumbnail,
                     image: item.data.url_overridden_by_dest,
                     video: item.data.secure_media?.reddit_video?.fallback_url,
+                    permalink: item.data.permalink
                 }
             }) : 'failed';
         },

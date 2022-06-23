@@ -1,11 +1,16 @@
 import React from 'react';
 import './post.css';
 import { ImArrowUp, ImArrowDown, ImBubble2 } from 'react-icons/im';
-import { Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
+import { SinglePost } from '../../singlePost/SinglePost';
+import { useDispatch } from 'react-redux';
+import { changeActivePostId } from '../../singlePost/singlePostSlice';
 export const Post = ({ post }) =>{
-    const {id, author, title, text, upvotes, commentNumber, subreddit} = post;
-    let {image, video, domain, thumbnail} = post;
+    const {id, author, title, text, upvotes, commentNumber, subreddit, permalink} = post;
+    let {image, video, thumbnail} = post;
     let width;
+    console.log(permalink);
+    const dispatch = useDispatch();
     // console.log(text.length);
     const handleThumbnail = () =>{
         if(image){
@@ -35,14 +40,16 @@ export const Post = ({ post }) =>{
             </div>
             <div className='post-author-title'>
                 <p className='post-author'>posted by: u/{author}</p>
-                <h3 className='post-title'>{title}</h3>
+                <h3 className='post-title'>
+                    <Link to={`${permalink}`} onClick={() => dispatch(changeActivePostId(post.id))}>{title}</Link>
+                </h3>
             </div>
             <div className='post-text'>
                 { /* get text without links */} 
-                {/* {text.length <= 600 || handleLink(text) ? <p>{text}</p> : <div></div>} */}
+                {text.length <= 250 ? <p>{text}</p> : <p>see more.</p>}
 
                 {video && <video width='100%' controls autoPlay loop playsInline>
-                    <source src={video} type="video/mp4" />
+                    <source src={video} type="video/mp4" className='video'/>
                 </video>}
                 
                
