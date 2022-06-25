@@ -1,12 +1,12 @@
 import React from 'react';
 import './post.css';
 import { ImArrowUp, ImArrowDown, ImBubble2 } from 'react-icons/im';
-import { Link, Navigate } from 'react-router-dom';
-import { SinglePost } from '../../singlePost/SinglePost';
+import { Link, useParams } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { changeActivePostId } from '../../singlePost/singlePostSlice';
 export const Post = ({ post }) =>{
-    const {id, author, title, text, upvotes, commentNumber, subreddit, permalink} = post;
+    const {author, title, text, upvotes, commentNumber, permalink} = post;
+    const { id } = useParams();
     let {image, video, thumbnail} = post;
     let width;
     // console.log(permalink);

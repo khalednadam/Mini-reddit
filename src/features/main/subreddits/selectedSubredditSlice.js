@@ -4,7 +4,7 @@ export const selectedSubredditSlice = createSlice({
     name: 'selectedSubreddit',
     // initialState: 'memes',
     initialState: {
-        selected: 'memes',
+        selected: 'popular',
         subreddits: ['memes', 'softwareengineering', 'movies', 'politics', 'sports', 'gaming', 'pics']
     },
     reducers: {

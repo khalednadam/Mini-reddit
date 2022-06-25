@@ -1,8 +1,12 @@
+*{
+    word-wrap: break-word;
+}
 .App {
   text-align: center;
+  word-wrap: break-word;
 }
-html{
-    font-family: Verdana;
+*{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 body{
     background-color: #DAE0E6;

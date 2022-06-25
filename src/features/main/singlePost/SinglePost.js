@@ -1,22 +1,22 @@
 import React, { useEffect } from 'react';
 import './singlePost.css';
-import { ImArrowUp, ImArrowDown, ImBubble2 } from 'react-icons/im';
+import { ImArrowUp, ImArrowDown } from 'react-icons/im';
 import {useDispatch, useSelector } from 'react-redux';
-import { loadPosts, selectPosts } from '../posts/postsSlice';
-import { selectSelectedSubreddit } from '../subreddits/selectedSubredditSlice';
+import {selectPosts } from '../posts/postsSlice';
 import { selectSinglePostId } from './singlePostSlice';
 import { loadComments, selectComments } from '../comments/commentsSlice';
 import { Comments } from '../comments/Comments';
+import { useParams } from 'react-router';
 export const SinglePost = () =>{
     const dispatch = useDispatch();
     const posts = useSelector(selectPosts);
     const activePostId = useSelector(selectSinglePostId);
     const selectedPost = posts.filter(post => post.id === activePostId);
-    // console.log('selectedPost permalink ' + selectedPost[0].permalink)
-
+    const { id, subreddit, title } = useParams();
+    // console.log({subreddit, id, title});
     useEffect(()=>{
-        dispatch(loadComments(selectedPost[0].permalink));
-    }, [dispatch, selectedPost[0].permalink])
+        dispatch(loadComments({subreddit, id, title}));
+    }, [dispatch, subreddit, id, title])
     const comments = useSelector(selectComments);
     
     let width;

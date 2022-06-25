@@ -14,7 +14,7 @@ function App() {
                 </div>
                     <div className='body'>
                     <Routes>
-                        <Route path='/r/:Subreddit/' element={ <Posts /> } />
+                        <Route path='/r/:subreddit/' element={ <Posts /> } />
                         <Route path='/r/:subreddit/comments/:id/:title' element={<SinglePost />} />
                     </Routes>
                         <Subreddits />
