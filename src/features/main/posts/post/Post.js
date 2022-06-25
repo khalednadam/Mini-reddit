@@ -9,7 +9,7 @@ export const Post = ({ post }) =>{
     const {id, author, title, text, upvotes, commentNumber, subreddit, permalink} = post;
     let {image, video, thumbnail} = post;
     let width;
-    console.log(permalink);
+    // console.log(permalink);
     const dispatch = useDispatch();
     // console.log(text.length);
     const handleThumbnail = () =>{
@@ -29,7 +29,7 @@ export const Post = ({ post }) =>{
 
     handleThumbnail();
     return(
-
+        
         <div className='post'>
             <div className='post-side'>
                 <div className='post-side-elements'>

@@ -13,7 +13,7 @@ export const Posts = () =>{
     const failed = useSelector(selectFailed);
     const loading = useSelector(selectLoading);
     let selectedSubreddit = useSelector(selectSelectedSubreddit);
-    console.log(selectedSubreddit);
+    // console.log(selectedSubreddit);
     useEffect(()=>{
         dispatch(loadPosts(selectedSubreddit))
         .then(unwrapResult);

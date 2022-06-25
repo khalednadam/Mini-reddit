@@ -18,10 +18,10 @@
     .title-middle-page{
         display: none;
     }
-    .full-post{
-        margin: 20px auto auto auto;
+    .post{
+        margin: 50px auto auto auto;
         justify-content: center;
-        width: 90%;
+        width: 80%;
         margin-bottom: 20px;
     }
 }
