@@ -18,6 +18,7 @@ export const Posts = () =>{
     useEffect(()=>{
         dispatch(loadPosts(subreddit))
         .then(unwrapResult);
+        window.scrollTo(0, 0)
         }, [dispatch, subreddit]);
     if(loading){
         return(

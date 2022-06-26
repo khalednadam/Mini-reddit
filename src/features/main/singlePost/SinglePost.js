@@ -16,6 +16,7 @@ export const SinglePost = () =>{
     // console.log({subreddit, id, title});
     useEffect(()=>{
         dispatch(loadComments({subreddit, id, title}));
+        window.scrollTo(0, 0)
     }, [dispatch, subreddit, id, title])
     const comments = useSelector(selectComments);
     
@@ -38,45 +39,49 @@ export const SinglePost = () =>{
     handleThumbnail();
     // console.log(selectedPost);
     return(
-        <>
+        <div className='single-post-page'>
             {selectedPost.map(post => {
-                return <div className='post'>
-                            <div className='post-side'>
-                                <div className='post-side-elements'>
-                                    <ImArrowUp className='up'/>
-                                    <p className='upvotes'>{post.upvotes}</p>
-                                    <ImArrowDown className='up' />
+                return <div className='single-post'>
+                            <div className='single-post-side'>
+                                <div className='single-post-side-elements'>
+                                    <ImArrowUp className='single-post-up arrow'/>
+                                    <p className='single-post-upvotes'>{post.upvotes}</p>
+                                    <ImArrowDown className='single-post-down arrow' />
+                                    
                                 </div>
                             </div>
-                            <div className='post-author-title'>
-                                <p className='post-author'>posted by: u/{post.author}</p>
-                                <h3 className='post-title'>
+                            <div className='single-post-author-title'>
+                                <p className='single-post-author'>posted by: u/{post.author}</p>
+                                <h3 className='single-post-title'>
                                     {post.title}
                                 </h3>
                             </div>
-                            <div className='post-text'>
+                            <div className='single-post-text'>
                                 { /* get text without links */} 
                                 {<p>{post.text}</p>}
     
-                                {post.video && <video width='100%' controls autoPlay loop playsInline>
-                                    <source src={post.video} type="video/mp4" className='video'/>
+                                {post.video && <video className='single-post-video' width='100%' controls autoPlay loop playsInline>
+                                    <source src={post.video} type="video/mp4" className='single-post-video'/>
                                 </video>}
                     
                    
     
                                 {<div>
-                                    {post.image ? <img src={post.image} style={{width: '100%', justifyContent: 'center'}}/>:null}     
+                                    {post.image ? <img src={handleThumbnail()} style={{width: '100%', justifyContent: 'center'}}/>:null}     
                                 </div>}
-                                {comments.map((comment) => {
-                                    console.log('comments '+ comment);
-                                    return <Comments comment={comment} key={comment.id} />
-                                })}
+                                <div className='comments'>
+                                    <h2>Comments</h2>
+                                    {comments.map((comment) => {
+                                        console.log('comments '+ comment);
+                                        return <Comments comment={comment} key={comment.id} />
+                                    })}
+                                </div>
                             </div>
                         </div>
 
             })}
             <br/> <br/><br/> <br/>
-        </>
+        </div>
     );
     
 }

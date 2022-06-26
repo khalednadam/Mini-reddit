@@ -22,3 +22,6 @@ body{
         display: flex;
     }
 }
+select{
+    font-size: 50px;
+}

@@ -18,6 +18,10 @@
     font-size: 1.2rem;
     font-weight: bold;
 }
+.header > a{
+    color: black;
+    text-decoration: none;
+}
 .logo > img{
     padding-right: 10px;
     align-self: center;
@@ -27,13 +31,13 @@
 .search-bar{
     align-self: center;
     margin: 0 50px 0 auto;
+    width: 50%;
 }
 .search{
     height: 30px;
-    width: 300px;
+    width: 100%;
 }
 @media screen and (max-width: 820px){
-    
     .head{
         width: 100%;
     }
