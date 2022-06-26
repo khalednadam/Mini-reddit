@@ -42,7 +42,8 @@ export const postsSlice = createSlice({
                     thumbnail: item.data.thumbnail,
                     image: item.data.url_overridden_by_dest,
                     video: item.data.secure_media?.reddit_video?.fallback_url,
-                    permalink: item.data.permalink
+                    permalink: item.data.permalink,
+                    url_overridden_by_dest: item.data.url_overridden_by_dest
                 }
             }) : 'failed';
         },

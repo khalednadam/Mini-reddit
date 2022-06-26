@@ -2,16 +2,17 @@ import React from 'react';
 import './post.css';
 import { ImArrowUp, ImArrowDown, ImBubble2 } from 'react-icons/im';
 import { Link, useParams } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { changeActivePostId } from '../../singlePost/singlePostSlice';
+import { selectLoading } from '../postsSlice';
+import { PostLoading } from '../../postsLoading/PostLoading';
 export const Post = ({ post }) =>{
-    const {author, title, text, upvotes, commentNumber, permalink} = post;
+    const {author, title, text, upvotes, commentNumber, permalink, url_overridden_by_dest} = post;
     const { id } = useParams();
+    const isLoadingPosts = useSelector(selectLoading);
     let {image, video, thumbnail} = post;
     let width;
-    // console.log(permalink);
     const dispatch = useDispatch();
-    // console.log(text.length);
     const handleThumbnail = () =>{
         if(image){
             if(image.includes('i.redd.it')){
@@ -28,8 +29,10 @@ export const Post = ({ post }) =>{
     }
 
     handleThumbnail();
+    if(isLoadingPosts){
+        return <PostLoading />
+    }
     return(
-        
         <div className='post'>
             <div className='post-side'>
                 <div className='post-side-elements'>
@@ -46,8 +49,6 @@ export const Post = ({ post }) =>{
             </div>
             <div className='post-text'>
                 { /* get text without links */} 
-                {text.length <= 250 ? <p>{text}</p> : <p>see more.</p>}
-
                 {video && <video width='100%' controls autoPlay loop playsInline>
                     <source src={video} type="video/mp4" className='video'/>
                 </video>}
@@ -55,7 +56,7 @@ export const Post = ({ post }) =>{
                
 
                 {<div>
-                    {image ? <img src={handleThumbnail()} style={{width: width}}/>:null}    
+                    {image ? <a href={url_overridden_by_dest} target="_blank" ><img src={handleThumbnail()} style={{width: width}}/></a>:null}    
                 </div>}
 
             </div>

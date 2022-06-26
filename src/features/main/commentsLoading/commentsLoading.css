@@ -1,0 +1,23 @@
+.comment-loading{
+    margin-top: 50px;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    gap: 0.3rem;
+    grid-column: 4 / 10;
+    background-color: #DAE0E6;
+    height: 100px;
+    border-radius: 20px 20px 20px 0%;
+}
+
+.comment-text-loading{
+    grid-column: 2/3;
+    grid-row: 2/3;
+    height: 20%;
+    background-color: rgba(104, 104, 104, 0.205);
+}
+.usename-loading{
+    grid-column: 2/5;
+    grid-row: 3/4;
+    background-color: rgba(104, 104, 104, 0.205);
+}
