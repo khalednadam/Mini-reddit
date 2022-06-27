@@ -5,17 +5,22 @@ import { Post } from './post/Post';
 import './post/post.css';
 import { loadPosts, selectFailed, selectLoading, selectPosts } from './postsSlice';
 import { useParams } from 'react-router';
+import { PostLoading } from '../postsLoading/PostLoading';
 
 export const Posts = () =>{
     const dispatch = useDispatch();
     const { subreddit } = useParams();
     const posts = useSelector(selectPosts);
     const failed = useSelector(selectFailed);
+    const loading = useSelector(selectLoading)
     useEffect(()=>{
         dispatch(loadPosts(subreddit))
         .then(unwrapResult);
         window.scrollTo(0, 0)
         }, [dispatch, subreddit]);
+    if(loading){
+        <PostLoading />
+    }
     if(failed || posts === 'failed'){
         return(
             <div style={{gridColumn: '6 / 8'}}>
